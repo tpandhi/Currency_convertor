@@ -1,4 +1,15 @@
 import React from 'react';
-import Options from './screens/Options';
+import Navigation from './config/Navigation';
+import { ConversionContextProvider } from './util/ConversionContext';
 
-export default () => <Options />;
+import { api } from './util/api';
+
+api('/latest?base=USD')
+  .then((res) => console.log(res))
+  .catch((err) => console.log('err', err));
+
+export default () => (
+  <ConversionContextProvider>
+    <Navigation />
+  </ConversionContextProvider>
+);
